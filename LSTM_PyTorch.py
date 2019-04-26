@@ -1,14 +1,3 @@
-
-# coding: utf-8
-
-# <div style="text-align:center;"><h1>LSTM PyTorch</h1></div>
-# 
-# 
-# 
-
-# In[847]:
-
-
 """
 The idea comes from this scratch version of LSTM:
 https://www.kaggle.com/rayjan/lstm-neural-network-from-scratch-106ffb/edit
@@ -36,7 +25,6 @@ model_save_name = 'checkpoint/LSTM.pt'
 # init_para = torch.load(path + model_save_name)
 
 
-# In[ ]:
 
 
 #data 
@@ -56,7 +44,6 @@ data = [x.lower() for x in data[:,0]]
 data = np.array(data).reshape(-1,1)
 
 
-# In[ ]:
 
 
 print("Data Shape = {}".format(data.shape))
@@ -65,7 +52,6 @@ print("Lets see some names : ")
 print(data[:10])
 
 
-# In[ ]:
 
 
 #to store the transform data
@@ -84,14 +70,13 @@ for index in range(len(data)):
 print(max_length)
 
 
-# In[ ]:
 
 
 print("Transformed Data")
 print(transform_data[1:10])
 
 
-# In[ ]:
+
 
 
 #to store the vocabulary
@@ -106,7 +91,7 @@ print("Vocab size = {}".format(len(vocab)))
 print("Vocab      = {}".format(vocab))
 
 
-# In[ ]:
+
 
 
 #map char to id and id to chars
@@ -121,14 +106,14 @@ for i,char in enumerate(vocab):
 print('a-{}, 19-{}'.format(char_id['a'],id_char[19]))
 
 
-# In[ ]:
+
 
 
 number_data = np.array([[char_id[ch] for ch in name[0]] for name in transform_data])
 print(number_data[:10])
 
 
-# In[ ]:
+
 
 
 def one_hot_encode(arr, n_labels):
@@ -146,13 +131,13 @@ onehot_data = torch.from_numpy(one_hot_encode(number_data, len(vocab)))
 onehot_data[0,:]
 
 
-# In[ ]:
+
 
 
 BATCH_SIZE = 128
 
 
-# In[ ]:
+
 
 
 def make_loader(one_hot_data, batch_size = BATCH_SIZE):
@@ -170,7 +155,6 @@ print(torch.max(batch_test[1],2)[1])
 print(batch_test[0][0])
 
 
-# In[ ]:
 
 
 HIDDEN_DIM = 256
@@ -180,7 +164,7 @@ LR = 0.0003
 NUM_LAYERS = 2
 
 
-# In[ ]:
+
 
 
 class lstm(nn.Module):
@@ -207,7 +191,7 @@ class lstm(nn.Module):
                 weight.new(self.n_layers, batch_size, self.n_hidden).zero_())
 
 
-# In[ ]:
+
 
 
 model = lstm(len(vocab), HIDDEN_DIM).cuda()
@@ -261,14 +245,12 @@ plt.show()
 
 
 
-# In[ ]:
 
 
 torch.save(model.state_dict(), path + model_save_name)
 init_para = torch.load(path + model_save_name)
 
 
-# In[ ]:
 
 
 import random
