@@ -5,3 +5,4 @@ The main goal of this subject is to learn the concept of LSTM with PyTorch that 
 compare with the scratch version on Kaggle link above.
 This toy code doesn't carefully setted up with exception, it can cause error if you change some
 hyperparameters such as BATCH_SIZE.
+![image](https://github.com/rayjan0114/LSTM_Tutorial/blob/master/data/LSTM_name.png)
